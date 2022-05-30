@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Http;
 */
 // WELCOME ROUTES --------------------------------
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 // DASHBOARD ROUTE --------------------------------
@@ -27,7 +27,7 @@ Route::get('/dashboard', function () {
 // GET MOVIE ROUTE --------------------------------
 Route::get('/movies', function () {
     return view('movie');
-});
+})->name('movie');
 
 // POST MOVIE API --------------------------------
 Route::post('/movies', function (Request $request) {
