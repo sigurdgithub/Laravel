@@ -31,11 +31,10 @@
             <hr>
             {{$movie->Year}}
             @if (Auth::check())
-            <form method="post" action="{{}}"><b>Favorite</b></form>
+            <form method="post" action="{{route('add')}}"><button type="submit"><b>Favorite</b></form>
             @endif
-            @endforeach
         </div>
-
+        @endforeach
         @endisset
 </x-app-Layout>
 </form>

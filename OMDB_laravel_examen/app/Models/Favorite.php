@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 
-class Favorites extends Model
+class Favorite extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -39,4 +39,9 @@ class Favorites extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

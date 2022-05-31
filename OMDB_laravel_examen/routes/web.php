@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,8 @@ Route::get('/favs', function () {
     return view('favs');
 })->name('favs');
 
-// POST FAVORITES ROUTE --------------------------------
-/* Route::post('/favs', function () {Request $request}) */
+// POST FAVORITES ROUTE 
+Route::post('/favs', [FavoriteController::class, 'add'])->name('add');
 
 // POST MOVIE API --------------------------------
 Route::post('/movie', function (Request $request) {
