@@ -29,15 +29,20 @@ Route::get('/movies', function () {
     return view('movie');
 })->name('movie');
 
+
+
 // GET FAVORITES ROUTES -------------------
 Route::get('/favs', function () {
     return view('favs');
 })->name('favs');
 
+// POST FAVORITES ROUTE --------------------------------
+/* Route::post('/favs', function () {Request $request}) */
+
 // POST MOVIE API --------------------------------
-Route::post('/movies', function (Request $request) {
+Route::post('/movie', function (Request $request) {
     $search = $request->input('movie');
-    $movies = Http::get('http://www.omdbapi.com/?i=tt3896198&apikey=f45f2e0c' . $search);
+    $movies = Http::get('http://www.omdbapi.com/?apikey=f45f2e0c&s=' . $search);
     $movies = json_decode($movies);
     return view('movie', compact('movies'));
 })->name('searchMovies');
