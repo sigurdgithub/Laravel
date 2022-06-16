@@ -21,15 +21,17 @@
                         {{ __('Movies') }}
                     </x-nav-link>
                 </div>
-                @if (Auth::check()) <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                @auth
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('favorites')" :active="request()->routeIs('favorites')">
                         {{ __('My Movies') }}
                     </x-nav-link>
                 </div>
-                @endif
+                @endauth
             </div>
 
             <!-- Settings Dropdown -->
+            @auth
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -61,7 +63,7 @@
                     </x-slot>
                 </x-dropdown>
             </div>
-
+            @endauth
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = ! open"

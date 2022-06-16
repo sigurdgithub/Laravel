@@ -1,6 +1,6 @@
 <x-app-layout>
-    @if (!Auth::check())<h3>Register or log in to add to favorites!
-        @endif
+    @auth<h3>Register or log in to add to favorites!
+        @endauth
         <form method="POST" action="/movie">
             @csrf
 
@@ -22,17 +22,22 @@
                 {{ __('Search') }}
             </x-button>
         </form>
-        @isset($movies)
-        @foreach ($movies->Search as $movie)
-        <div class="flex-auto flex-row w sm:max-width">
-            <img src="{{$movie->Poster}}"></img>
-            <hr>
-            {{$movie->Title}}
-            <hr>
-            {{$movie->Year}}
-            @auth
-            <form method="post" action="{{route('add')}}"><button type="submit"><b>Favorite</b></form>
-            @endauth
+        <form method="post" action="{{route('add')}}">
+            @csrf
+            @isset($movies)
+            @foreach ($movies->Search as $movie)
+            <div class="flex-auto flex-row w sm:max-width">
+                <img src="{{$movie->Poster}}"></img>
+                <hr>
+                {{$movie->Title}}
+                <hr>
+                {{$movie->Year}}
+                @auth
+
+
+                <button type="submit"><b>Favorite</b>
+        </form>
+        @endauth
         </div>
         @endforeach
         @endisset
