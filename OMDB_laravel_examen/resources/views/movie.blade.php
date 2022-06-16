@@ -22,6 +22,27 @@
                 {{ __('Search') }}
             </x-button>
         </form>
+        <form method="POST" action={{route("surprise")}}>
+            @csrf
+            <div class="p-6">
+                <button type="submit"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right">Surprise!
+            </div>
+            @isset($surprise_movies)
+            @foreach ($surprise_movies as $surprise)
+            @php
+            dd($surprise);
+            @endphp
+            <div class="flex-auto flex-row w sm:max-width">
+                <img src="{{$surprise->Poster}}"></img>
+                <hr>
+                {{$surprise->Title}}
+                <hr>
+                {{$surprise->Year}}
+            </div>
+            @endforeach
+        </form>
+        @endisset
         <form method="post" action="{{route('add')}}">
             @csrf
             @isset($movies)

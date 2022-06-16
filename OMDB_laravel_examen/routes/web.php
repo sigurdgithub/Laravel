@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\FavoriteController;
+use Illuminate\Support\Collection;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,10 +44,20 @@ Route::post('/favorites', [FavoriteController::class, 'add'])->name('add');
 // POST MOVIE API --------------------------------
 Route::post('/movie', function (Request $request) {
     $search = $request->input('movie');
-    $movies = Http::get('http://www.omdbapi.com/?apikey=f45f2e0c&s=' . $search);
+    $movies = Http::get('http://www.omdbapi.com/?apikey=f45f2e0c&s' . $search);
     $movies = json_decode($movies);
     return view('movie', compact('movies'));
 })->name('searchMovies');
+
+Route::post('/movies', function () {
+    $genres = array("Music", "Drama", "Kill", "Comedy", "Action", "Horror", "Story", "Animation", "Saw", "Star Wars");
+    $surprise_genre = array_rand(array_flip($genres), 1);
+    //dd($surprise_genre);
+    $surprise_movies = Http::get('http://www.omdbapi.com/?apikey=f45f2e0c&s=' . $surprise_genre . '&p=1');
+    $surprise_movies = json_decode($surprise_movies);
+    //dd($surprise_movies);
+    return view('/movie', compact('surprise_movies'));
+})->name('surprise');
 
 
 
