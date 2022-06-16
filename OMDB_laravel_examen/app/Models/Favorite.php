@@ -21,7 +21,6 @@ class Favorite extends Model
         'user_id',
         'title',
         'year',
-        'category'
     ];
 
     /**
