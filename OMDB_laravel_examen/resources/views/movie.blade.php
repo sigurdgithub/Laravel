@@ -30,9 +30,9 @@
             {{$movie->Title}}
             <hr>
             {{$movie->Year}}
-            @if (Auth::check())
+            @auth
             <form method="post" action="{{route('add')}}"><button type="submit"><b>Favorite</b></form>
-            @endif
+            @endauth
         </div>
         @endforeach
         @endisset

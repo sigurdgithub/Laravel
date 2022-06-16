@@ -10,15 +10,13 @@ class FavoriteController extends Controller
 
 
 
-    public function add($title, $year, $category)
+    public function add(Request $movie)
     {
         $fav = Favorite::create([
-            'user_id' => Auth()->User()->id,
-            'title' => $title,
-            'year' => $year,
-            'category' => $category,
+            'user_id' => Auth()->user()->id,
+            'title' => $movie->title,
+            'year' => $movie->year
         ]);
         $fav->save();
-        event(new FavoriteController($fav));
     }
 }

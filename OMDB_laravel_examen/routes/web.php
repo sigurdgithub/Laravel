@@ -33,12 +33,12 @@ Route::get('/movies', function () {
 
 
 // GET FAVORITES ROUTES -------------------
-Route::get('/favs', function () {
-    return view('favs');
-})->name('favs');
+Route::get('/favorites', function () {
+    return view('favorites');
+})->name('favorites');
 
 // POST FAVORITES ROUTE 
-Route::post('/favs', [FavoriteController::class, 'add'])->name('add');
+Route::post('/favorites', [FavoriteController::class, 'add'])->name('add');
 
 // POST MOVIE API --------------------------------
 Route::post('/movie', function (Request $request) {

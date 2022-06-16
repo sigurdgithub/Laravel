@@ -22,7 +22,7 @@
                     </x-nav-link>
                 </div>
                 @if (Auth::check()) <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('favs')" :active="request()->routeIs('favs')">
+                    <x-nav-link :href="route('favorites')" :active="request()->routeIs('favorites')">
                         {{ __('My Movies') }}
                     </x-nav-link>
                 </div>
